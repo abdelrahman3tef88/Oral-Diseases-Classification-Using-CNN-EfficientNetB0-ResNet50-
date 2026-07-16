@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+logs/*.log
+uploads/*
+responses/*
+models/*
+!uploads/.gitkeep
+!responses/.gitkeep
+!models/.gitkeep
+!logs/.gitkeep
+dataset.zip
+best_model.h5

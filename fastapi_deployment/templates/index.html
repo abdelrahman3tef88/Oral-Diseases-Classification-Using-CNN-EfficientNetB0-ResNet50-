@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ app_name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="intro-panel">
+      <div class="brand-row">
+        <span class="brand-mark">OD</span>
+        <div>
+          <p class="eyebrow">AI Diagnostic Assistant</p>
+          <h1>Oral Disease Classification</h1>
+        </div>
+      </div>
+      <p class="intro-copy">
+        Upload an oral image and review the model prediction with confidence and class probability distribution.
+      </p>
+      <div class="status-grid" aria-label="Application links">
+        <a href="/docs" class="status-link">Swagger UI</a>
+        <a href="/redoc" class="status-link">ReDoc</a>
+        <span class="version-pill">v{{ version }}</span>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Prediction workspace">
+      <form id="predictForm" class="upload-panel">
+        <label id="dropZone" class="drop-zone" for="imageInput">
+          <input id="imageInput" name="file" type="file" accept="image/*">
+          <span class="upload-icon" aria-hidden="true">+</span>
+          <span class="drop-title">Choose an image</span>
+          <span class="drop-subtitle">PNG, JPG, WEBP, BMP, or TIFF up to 10 MB</span>
+        </label>
+
+        <div id="previewShell" class="preview-shell is-hidden">
+          <img id="imagePreview" alt="Selected image preview">
+          <button id="clearButton" class="ghost-button" type="button">Remove</button>
+        </div>
+
+        <button id="predictButton" class="primary-button" type="submit" disabled>
+          <span class="button-label">Predict</span>
+          <span class="button-loader" aria-hidden="true"></span>
+        </button>
+
+        <p id="errorMessage" class="error-message" role="alert"></p>
+      </form>
+
+      <aside id="resultPanel" class="result-panel is-empty" aria-live="polite">
+        <div class="empty-state">
+          <span class="empty-icon" aria-hidden="true"></span>
+          <p>Prediction results will appear here.</p>
+        </div>
+
+        <div class="result-content">
+          <p class="eyebrow">Prediction</p>
+          <h2 id="predictedClass">-</h2>
+
+          <div class="confidence-card">
+            <span>Confidence</span>
+            <strong id="confidenceScore">0%</strong>
+          </div>
+
+          <div class="chart-header">
+            <h3>Class probabilities</h3>
+          </div>
+          <div id="probabilityChart" class="probability-chart"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', path='/js/script.js') }}"></script>
+</body>
+</html>
