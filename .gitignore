@@ -1,3 +1,6 @@
+dataset.zip
+best_model.h5
+
 .venv/
 __pycache__/
 *.pyc
@@ -10,5 +13,3 @@ models/*
 !responses/.gitkeep
 !models/.gitkeep
 !logs/.gitkeep
-dataset.zip
-best_model.h5
